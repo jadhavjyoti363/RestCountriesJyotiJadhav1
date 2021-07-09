@@ -4,12 +4,15 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.example.restcountries.ModelClass.RestCountries;
 import com.example.restcountries.R;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import org.json.JSONObject;
 
@@ -54,6 +57,8 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter <CustomRecyclerA
         holder.Population.setText(rec.getPopulation());
         holder.Subregion.setText(rec.getSubregion());
         holder.Language.setText(rec.getLanguage());
+        Picasso.get().load(rec.getFlag()).error(R.drawable.colmbia1).into( holder.Flag);
+
 
 
     }
@@ -70,7 +75,7 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter <CustomRecyclerA
 
         public TextView Name;
         public TextView Capital;
-        public TextView Flag;
+        public ImageView Flag;
         public TextView Region;
         public TextView  Subregion;
         public TextView Population;
@@ -83,7 +88,7 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter <CustomRecyclerA
             super(itemView);
             Name = (TextView) itemView.findViewById(R.id.Nametxt);
             Capital = (TextView) itemView.findViewById(R.id.Capital);
-            //Flag = (TextView) itemView.findViewById(R.id.F);
+            Flag = (ImageView) itemView.findViewById(R.id.flag);
             Region = (TextView) itemView.findViewById(R.id.Region);
             Subregion= (TextView) itemView.findViewById(R.id.Subregion);
             Population = (TextView) itemView.findViewById(R.id.Population);
@@ -96,9 +101,7 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter <CustomRecyclerA
 
                   RestCountries  rc = (RestCountries) view.getTag();
 
-              //      Toast.makeText(view.getContext(), rc.getName()+" "+cpu.getFinalPrice()+" is "+ cpu.getFinalPrice(), Toast.LENGTH_SHORT).show();
-
-                }
+                            }
             });
 
         }
